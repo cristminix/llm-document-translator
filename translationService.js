@@ -6,6 +6,38 @@ import { splitHtml } from './splitHtml.js';
 import { splitHtml2Markdown } from './splitHtml2Markdown.js';
 import fs from 'fs/promises';
 import fs2 from 'fs';
+import { marked } from 'marked';
+
+import { fixHtml } from './fixHtml.js';
+function removeMd(text) {
+    return text
+        // hapus bold dan italic yang dipasangkan dengan teks di antaranya
+        .replace(/\*\*(.*?)\*\*/g, '$1')   // bold
+        .replace(/\*(.*?)\*/g, '$1')       // italic
+        .replace(/__(.*?)__/g, '$1')       // bold underline
+        .replace(/_(.*?)_/g, '$1')         // italic underscore
+        .replace(/`(.*?)`/g, '$1')         // inline code
+        .replace(/~~(.*?)~~/g, '$1')       // strikethrough
+
+        // hapus gambar markdown
+        .replace(/!\[.*?\]\(.*?\)/g, '')
+        // hapus link markdown, sisakan teksnya saja
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1')
+
+        // hapus header (#) markdown
+        .replace(/^#{1,6}\s*(.*)/gm, '$1')
+
+        // hapus list bullets di awal baris
+        .replace(/^(\s*[-*+>]\s+)/gm, '')
+
+        // hapus ** yang berdiri sendiri tanpa teks (misal setelah replace sebelumnya tersisa)
+        .replace(/\*\*/g, '')
+        // hapus * yang berdiri sendiri tanpa teks
+        .replace(/\*/g, '')
+
+        // hapus underscore _ yang berdiri sendiri
+        .replace(/_/g, '');
+}
 export const translateText = async (text, targetLanguage, baseUrl, apiKey, modelName, filePath, chunkIndex) => {
     const chunkFilePath = getChunkFilePath(filePath, chunkIndex);
     let translatedText = await readChunkResult(chunkFilePath);
@@ -43,30 +75,38 @@ export const translateHtml = async (htmlInputFilePath, targetLanguage, baseUrl, 
         if (!fs2.existsSync(chunkFilePath)) {
             console.log(`Processing chunk: "${content}"`);
             const translatedText = await runLLM(baseUrl, apiKey, modelName, content, targetLanguage);
-            translatedChunks.push(translatedText);
 
             console.log(`Translated chunk: "${translatedText}"`);
             await writeChunkResult(chunkFilePath, translatedText);
+            translatedChunks.push(removeMd(await fixHtml(chunkFilePath)));
+
 
         } else {
-            const test = await fs.readFile(`${chunkFilePath}`, 'utf-8');
-            console.log(`Test read: ${test}`);
+            // const test = await fs.readFile(`${chunkFilePath}`, 'utf-8');
+            // console.log(`Test read: ${test}`);
 
-            translatedChunks.push(test);
+            translatedChunks.push(removeMd(await fixHtml(chunkFilePath)));
 
         }
-        console.log({ chunkFilePath })
+        // console.log({ chunkFilePath })
 
 
 
     }
+    const body = translatedChunks.join('\n');
     const html = `<!DOCTYPE html>
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd" xmlns:epub="http://www.idpf.org/2007/ops">
 <head>
 <link href="Styles/Style00.css" rel="stylesheet" type="text/css" />
 
-<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
-<body><div id="sbo-rt-content"><div class="readable-text" id="p1">${translatedChunks.join('\n')}</div></div></body></html>`;
+<style type="text/css">
+ pre strong{
+    white-space: pre;
+    display: block;
+    margin: 0;
+    padding: 0;
+} strong{font-weight:bold} em{font-style:normal} li em{font-weight:bold} body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><div class="readable-text" id="p1">${body}</div></div></body></html>`;
 
     return html;
 

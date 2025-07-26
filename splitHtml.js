@@ -12,7 +12,7 @@ export async function splitHtml(htmlFilePath) {
     const resultFiles = [];
     try {
         await fs.mkdir(OUTPUT_DIR, { recursive: true })
-        const browser = await puppeteer.launch()
+        const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
         const page = await browser.newPage()
         const INPUT_HTML = htmlFilePath
         const html = await fs.readFile(INPUT_HTML, 'utf-8')
