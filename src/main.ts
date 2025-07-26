@@ -71,6 +71,12 @@ const main = async () => {
       type: "string",
       demandOption: true,
     })
+    .option("s", {
+      alias: "strategy",
+      describe: "Strategy for translation (e.g., splitHtml, splitPdf)",
+      type: "string",
+      demandOption: true,
+    })
     .option("o", {
       alias: "output",
       describe: "Path to the output file",
@@ -80,7 +86,12 @@ const main = async () => {
     .help().argv
 
   //@ts-ignore
-  const { file: filePath, target: targetLanguage, output: outputPath } = argv
+  const {
+    file: filePath,
+    target: targetLanguage,
+    output: outputPath,
+    strategy,
+  } = argv
 
   try {
     const fileExtension = path.extname(filePath)
@@ -106,7 +117,8 @@ const main = async () => {
         //@ts-ignore
         baseUrl,
         apiKey,
-        modelName
+        modelName,
+        strategy
       )
       continueProcess = true
     } else if (fileExtension === ".md") {

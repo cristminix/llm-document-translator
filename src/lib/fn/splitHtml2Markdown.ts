@@ -1,15 +1,18 @@
 import { promisify } from "util"
 import { exec } from "child_process"
 import path from "path"
-import fs from "fs"
+import fs from "fs/promises"
+import fs2 from "fs"
 import puppeteer from "puppeteer"
 import chromium from "@sparticuz/chromium"
 import { PDFDocument } from "pdf-lib"
 
 const execAsync = promisify(exec)
+const WORKING_DIR = process.env.WORKING_DIR ?? "./working_dir"
 
-const OUTPUT_MARKDOWN_DIR = "./markdown-outputs" // output folder
-const OUTPUT_PDF_DIR = "./output-pages" // output folder
+const OUTPUT_MARKDOWN_DIR = `${WORKING_DIR}/markdown-outputs` // output folder
+
+const OUTPUT_PDF_DIR = `${WORKING_DIR}/output-pages` // output folder
 //
 export async function splitHtml2Markdown(htmlFilePath: string) {
   const htmlInputBasename = path.parse(htmlFilePath).name
@@ -18,13 +21,13 @@ export async function splitHtml2Markdown(htmlFilePath: string) {
   const resultFiles: string[] = []
   let successGeneratePdf = false
   // split html into pdf
-  if (fs.existsSync(fullPdfOutputFilePath)) {
+  if (fs2.existsSync(fullPdfOutputFilePath)) {
     successGeneratePdf = true
     console.log(`Skip Generating file exist ${fullPdfOutputFilePath}.`)
   } else {
     console.log(`Generating PDF from HTML...`)
     try {
-      let htmlContent = await fs.readFileSync(htmlFilePath, "utf8")
+      let htmlContent = await fs2.readFileSync(htmlFilePath, "utf8")
       let pdfBuffer
       const browser = await puppeteer.launch({
         args: chromium.args,
@@ -45,7 +48,7 @@ export async function splitHtml2Markdown(htmlFilePath: string) {
       console.log(`[INFO] Pdf Is Generated Successfully`)
       // Write the PDF buffer to the specified file path
 
-      await fs.writeFileSync(fullPdfOutputFilePath, pdfBuffer)
+      await fs2.writeFileSync(fullPdfOutputFilePath, pdfBuffer)
       console.log(
         "[INFO] SSPDF file saved successfully:",
         fullPdfOutputFilePath
@@ -63,11 +66,11 @@ export async function splitHtml2Markdown(htmlFilePath: string) {
     // loop trough output pages
     try {
       const splittedPdfOutputDir = path.join(OUTPUT_PDF_DIR, htmlInputBasename)
-      if (!fs.existsSync(splittedPdfOutputDir)) {
-        await fs.mkdirSync(splittedPdfOutputDir, { recursive: true })
+      if (!fs2.existsSync(splittedPdfOutputDir)) {
+        await fs2.mkdirSync(splittedPdfOutputDir, { recursive: true })
       }
       // Load the existing PDF document
-      const existingPdfBytes = await fs.readFileSync(fullPdfOutputFilePath)
+      const existingPdfBytes = await fs2.readFileSync(fullPdfOutputFilePath)
       const pdfDoc = await PDFDocument.load(existingPdfBytes)
 
       const numPages = pdfDoc.getPages().length
@@ -78,7 +81,7 @@ export async function splitHtml2Markdown(htmlFilePath: string) {
           i + 1
         }.pdf`
 
-        if (!fs.existsSync(splittedPdfOutputPath)) {
+        if (!fs2.existsSync(splittedPdfOutputPath)) {
           const subDocument = await PDFDocument.create()
 
           // Copy the page from the original document
@@ -87,7 +90,7 @@ export async function splitHtml2Markdown(htmlFilePath: string) {
 
           // Save the new document as a separate PDF
           const pdfBytes = await subDocument.save()
-          await fs.writeFileSync(splittedPdfOutputPath, pdfBytes)
+          await fs2.writeFileSync(splittedPdfOutputPath, pdfBytes)
           console.log(`Page ${i + 1} saved to ${splittedPdfOutputPath}`)
         } else {
           console.log(
@@ -100,12 +103,12 @@ export async function splitHtml2Markdown(htmlFilePath: string) {
           OUTPUT_MARKDOWN_DIR,
           htmlInputBasename
         )
-        if (!fs.existsSync(markdownOutputDir)) {
-          await fs.mkdirSync(splittedPdfOutputDir, { recursive: true })
+        if (!fs2.existsSync(markdownOutputDir)) {
+          await fs2.mkdirSync(splittedPdfOutputDir, { recursive: true })
         }
         const outputMarkdownPath = `${markdownOutputDir}/${markdownFilename}.md`
 
-        if (!fs.existsSync(outputMarkdownPath)) {
+        if (!fs2.existsSync(outputMarkdownPath)) {
           const command = `markitdown ${splittedPdfOutputPath} -o ${outputMarkdownPath}`
           console.log(`[INFO] Converting PDF page ${i + 1} to Markdown...`)
 
