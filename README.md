@@ -43,7 +43,7 @@ WORKING_DIR=./working_dir
 
 # Usage
 
-`npx vite-node src/main.ts  -f <input_file> -t <lang> -o <outpu_file>`
+`npx vite-node src/main.ts  -f <input_file> -t <lang> -o <output_file>`
 
 ```
 // Display usage
