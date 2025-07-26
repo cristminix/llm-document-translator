@@ -56,7 +56,7 @@ npx vite-node src/main.ts  -f inputs/large_file.html -t id -o working_dir/output
 
 # Limitation
 
-Currently support html file only. Always check splited file located in `<WORKING_DIR>/html-split-outputs/<input_fil_basename>/page-N.html`.
+Currently support html file only. Always check splited file located in `<WORKING_DIR>/html-split-outputs/<input_file_basename>/page-N.html`.
 
 # Modify template
 
