@@ -7,7 +7,11 @@ import { cleanInvalidMarkdown } from "./cleanInvalidMarkdown"
 import { splitHtml } from "./splitHtml"
 import { splitHtml2Markdown } from "./splitHtml2Markdown"
 import { marked } from "marked"
-
+function getMarkdownContent(text: string): string {
+  const regex = /```markdown\n([\s\S]*?)\n```/g
+  const match = regex.exec(text)
+  return match ? match[1] : ""
+}
 export const translateHtml = async (
   htmlInputFilePath: string,
   targetLanguage: string,
@@ -48,6 +52,8 @@ export const translateHtml = async (
         translatedChunks.push(
           cleanInvalidMarkdown(await fs.readFile(chunkFilePath, "utf-8"))
         )
+      } else {
+        translatedChunks.push(await fs.readFile(chunkFilePath, "utf-8"))
       }
     } else {
       // const test = await fs.readFile(`${chunkFilePath}`, 'utf-8');
@@ -58,12 +64,21 @@ export const translateHtml = async (
           cleanInvalidMarkdown(await fixHtml(chunkFilePath))
         )
       } else {
-        cleanInvalidMarkdown(await fs.readFile(chunkFilePath, "utf-8"))
+        translatedChunks.push(await fs.readFile(chunkFilePath, "utf-8"))
       }
     }
     // console.log({ chunkFilePath })
   }
-  const body = marked(translatedChunks.join("\n"))
+  console.log(`Translated ${translatedChunks.length} chunks.`)
+  console.log({ translatedChunks })
+  const body = await marked(
+    translatedChunks
+      .map((o) => {
+        return getMarkdownContent(o)
+      })
+      .join("\n")
+  )
+  console.log(`Generated body: ${body}`)
   const html = `<!DOCTYPE html>
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd" xmlns:epub="http://www.idpf.org/2007/ops">
 <head>

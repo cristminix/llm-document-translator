@@ -13,5 +13,5 @@ for html_file in "${HTML_INPUT_DIR}"/*.xhtml; do
   html_output_file="${HTML_OUTPUT_DIR}/${file_name%.xhtml}.html"
   echo "Processing ${html_file} \n--> to ${html_output_file}"
   npx vite-node src/main.ts -f "${html_file}" -t "id" -s splitPdf -o "${html_output_file}"
-  break
+  # break
 done

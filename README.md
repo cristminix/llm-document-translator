@@ -43,20 +43,26 @@ WORKING_DIR=./working_dir
 
 # Usage
 
-`npx vite-node src/main.ts  -f <input_file> -t <lang> -o <output_file>`
+`npx vite-node src/main.ts  -f <input_file> -t <lang> -s <strategy(splitHtml|splitPdf)>-o <output_file>`
 
 ```
 // Display usage
 npx vite-node src/main.ts
 
 // Example usage
-npx vite-node src/main.ts  -f inputs/large_file.html -t id -o working_dir/outputs/large_file_translated.html
+npx vite-node src/main.ts  -f inputs/large_file.html -t id -s splitPdf -o working_dir/outputs/large_file_translated.html
 
 ```
 
 # Limitation
 
 Currently support html file only. Always check splited file located in `<WORKING_DIR>/html-split-outputs/<input_file_basename>/page-N.html`.
+splitHtml strategy may only work properly for properly constructed html file, this include using class selector for stylesheet,not too much unused tags,not too much table.
+
+for spltPdf strategy : `<WORKING_DIR>/markdown-outputs/<input_file_basename>/part-N.md`.
+seems to work properly but not perfect on output styling.
+
+the problem is max tokens on llm output that we cant predict to
 
 # Modify template
 
