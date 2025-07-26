@@ -1,21 +1,26 @@
 import fs from "fs/promises"
+import path from "path"
 import puppeteer from "puppeteer"
 // const execAsync = promisify(exec);
 const PAGE_HEIGHT = 600 // A4 at 96 DPI
 
-// const OUTPUT_SPLIT_HTML_DIR = './html-split-outputs' // output folder
-const OUTPUT_DIR = "./html-split-outputs" // output folder
+const WORKING_DIR = process.env.WORKING_DIR ?? "./working_dir"
+
+const OUTPUT_DIR = `${WORKING_DIR}/html-split-outputs` // output folder
 //
 export async function splitHtml(htmlFilePath: string) {
+  // properly make output-dir by basename of htmlFilePath
+  const OUTPUT_DIR_BY_FILE = `${OUTPUT_DIR}/${path.basename(htmlFilePath)}`
   const resultFiles = []
   try {
-    await fs.mkdir(OUTPUT_DIR, { recursive: true })
+    await fs.mkdir(OUTPUT_DIR_BY_FILE, { recursive: true })
     const browser = await puppeteer.launch({
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
     })
     const page = await browser.newPage()
     const INPUT_HTML = htmlFilePath
     const html = await fs.readFile(INPUT_HTML, "utf-8")
+    console.log({ html })
     await page.setContent(html, { waitUntil: "load" })
     // Listen for console events in the browser context
     page.on("console", (msg) => {
@@ -24,9 +29,12 @@ export async function splitHtml(htmlFilePath: string) {
     })
     const pages = await page.evaluate((PAGE_HEIGHT) => {
       // Cari elemen kontainer utama terbesar
+      console.log("Finding main container...")
       function findMainContainer() {
         const body = document.body
         let largest: Element = body
+
+        /*
         let maxHeight = 0
         for (const el of body.children) {
           const h = el.getBoundingClientRect().height
@@ -35,6 +43,10 @@ export async function splitHtml(htmlFilePath: string) {
             maxHeight = h
           }
         }
+        console.log(
+          `Main container found: ${largest.tagName} with height ${maxHeight}px`
+        )
+          */
         return largest
       }
 
@@ -130,14 +142,14 @@ export async function splitHtml(htmlFilePath: string) {
 
       return resultPages
     }, PAGE_HEIGHT)
-
+    console.log({ pages })
     // Hasil `pages` adalah array array HTML—masing-masing adalah kumpulan string HTML elemen untuk setiap halaman.
 
     for (let i = 0; i < pages.length; i++) {
       const content = `
         ${pages[i].join("\n")}
     `
-      const file = `${OUTPUT_DIR}/page-${i + 1}.html`
+      const file = `${OUTPUT_DIR_BY_FILE}/page-${i + 1}.html`
       resultFiles.push(file)
       await fs.writeFile(file, content)
       console.log(`✅ Wrote ${file}`)

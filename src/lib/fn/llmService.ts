@@ -3,9 +3,9 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-const MAX_RETRIES = parseInt(process.env.MAX_RETRIES ?? "3") || 3
-const RETRY_DELAY = parseInt(process.env.RETRY_DELAY ?? "1000") || 1000
-const MAX_TOKENS = parseInt(process.env.MAX_TOKENS ?? "1000") || 1000
+const MAX_RETRIES = parseInt(process.env.MAX_RETRIES ?? "3")
+const RETRY_DELAY = parseInt(process.env.RETRY_DELAY ?? "1000")
+const MAX_TOKENS = parseInt(process.env.MAX_TOKENS ?? "1000")
 
 /**
  * Sends a request to the LLM API and returns the response with retry mechanism.

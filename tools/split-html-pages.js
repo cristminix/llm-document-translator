@@ -2,8 +2,8 @@
 import fs from 'fs/promises'
 import puppeteer from 'puppeteer'
 
-const INPUT_HTML = 'inputs/chapter-4.xhtml'     // your source file
-const OUTPUT_DIR = './output-pages' // output folder
+const INPUT_HTML = './auxiliary/large_file.html'     // your source file
+const OUTPUT_DIR = './working_dir/output-pages' // output folder
 const PAGE_HEIGHT = 600 // A4 at 96 DPI
 
 async function run() {
@@ -20,6 +20,8 @@ async function run() {
     });
     const pages = await page.evaluate((PAGE_HEIGHT) => {
         // Cari elemen kontainer utama terbesar
+        /*
+        console.log("Finding main container...");
         function findMainContainer() {
             const body = document.body;
             let largest = body;
@@ -31,9 +33,11 @@ async function run() {
                     maxHeight = h;
                 }
             }
+            console.log(`Main container found largest: ${largest.tagName} with height ${maxHeight}px`);
             return largest;
         }
 
+        */
         // Fungsi mengukur tinggi elemen termasuk margin atas/bawah
         function getHeight(el) {
             const r = el.getBoundingClientRect();
@@ -87,13 +91,18 @@ async function run() {
         }
 
         // Algoritma utama split halaman
-        const container = findMainContainer();
-        const blocks = Array.from(container.children);
+        let container = document.body;
+        let blocks = Array.from(container.children);
+        // if (true) {
+        //     container = document.body
+        //     blocks = Array.from(container.children);
+        // }
         const resultPages = [];
         let current = [];
         let height = 0;
-
+        console.log(blocks.length);
         for (const el of blocks) {
+            console.log("HERE")
             const h = getHeight(el);
             // Jika elemen terlalu tinggi untuk satu halaman, coba split children-nya
             if (h > PAGE_HEIGHT) {
@@ -117,6 +126,7 @@ async function run() {
                 current = [];
                 height = 0;
             }
+            console.log({ current })
             current.push(el.outerHTML);
             height += h;
         }
@@ -128,7 +138,7 @@ async function run() {
     // Hasil `pages` adalah array array HTML—masing-masing adalah kumpulan string HTML elemen untuk setiap halaman.
 
 
-
+    console.log({ pages })
     for (let i = 0; i < pages.length; i++) {
         const content = `
         ${pages[i].join('\n')}
