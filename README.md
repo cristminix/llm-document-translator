@@ -1,10 +1,12 @@
 # PURPOSE
 
-Translate large html file into different language
+Translate large html file into different language. Maintain their structure as it is as possible.
 
 # Installation
 
 ```bash
+git clone https://github.com/cristminix/llm-document-translator
+cd llm-document-translator
 pnpm i
 
 ```
