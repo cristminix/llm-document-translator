@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd" xmlns:epub="http://www.idpf.org/2007/ops">
+<head>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><h2 class="h2a1" id="ch10"><span epub:type="pagebreak" id="page_240"/><span class="big">10</span> <span class="red">Performing Color Correction</span></h2>
+<div class="feature">
+<p class="title">Lesson overview</p>
+<p class="noindent">In this lesson, you’ll learn how to do the following:</p>
+<ul>
+<li><p class="bullet">Use a transition to move from one clip to another.</p></li>
+<li><p class="bullet">Use the Levels effect to correct the color in a shot.</p></li>
+<li><p class="bullet">Use the mask tracker to track part of a scene.</p></li>
+<li><p class="bullet">Remove an area using the Keylight (1.2) effect.</p></li>
+<li><p class="bullet">Use the Auto Levels effect to remove a color cast.</p></li>
+<li><p class="bullet">Key out an area using the Color Range effect.</p></li>
+<li><p class="bullet">Correct colors using the Lumetri Color effect.</p></li>
+<li><p class="bullet">Use the CC Toner effect to create a mood.</p></li>
+<li><p class="bullet">Copy an object in the scene with the Clone Stamp tool.</p></li>
+</ul>
+<div class="image1"><img src="Images/clock.jpg" alt="Image" width="47" height="48"/></div>
+<p class="noindent">This lesson will take approximately an hour to complete. Download the project files for this lesson, following the instructions in the Getting Started section under “<a href="pref02.xhtml#pref02lev2sec3">Accessing the lesson files and Web Edition</a>,” if you haven’t already done so. As you work on this lesson, you’ll preserve the start files. If you need to restore the start files, download them from your Account page.</p>
+</div>
+<div class="image"><span epub:type="pagebreak" id="page_241"/><img src="Images/cc_00.jpg" alt="Image" width="827" height="610"/></div>
+<p class="credit">PROJECT: SEQUENCE FROM A MUSIC VIDEO</p>
+<p class="caption">Most shots require some degree of color correction and color grading. With Adobe After Effects, you can easily remove color casts, brighten images, and change the mood of a clip.</p>
+<h3 id="ch10lev1sec1"><span epub:type="pagebreak" id="page_242"/>Getting started</h3>
+<p class="noindent">As the term implies, color correction is a way of altering or adapting the color of a captured image. Strictly speaking, <em>color correction</em> is the act of adjusting the color in a shot to correct errors in white balance and exposure, and to ensure color consistency from one shot to another. However, you can use the same color-correction tools and techniques to perform <em>color grading</em>, which is the subjective manipulation of color to focus attention on a key element in a shot or to create a color palette for a specific visual look.</p>
+<p class="noindent">In this lesson, you will correct the color of a video clip that was shot without the proper white-balance setting. First, you’ll combine two clips from a longer video of a young superhero taking off and flying through the sky. Then, you’ll apply a variety of color-correction effects to clean up and enhance the image. You’ll also use mask tracking and motion tracking to replace the sky with more dramatic clouds.</p>
+<p class="noindent">First, you’ll preview the final movie and set up your project.</p>
+<ol>
+<li><p class="number">Make sure the following files are in the Lessons/Lesson10 folder on your hard disk, or download them from your Account page at <a href="http://www.peachpit.com">www.peachpit.com</a> now:</p>
+<ul class="ul1">
+<li><p class="bullet1">In the Assets folder: storm_clouds.jpg, superkid_01.mov, superkid_02.mov</p></li>
+<li><p class="bullet1">In the Sample_Movies folder: Lesson10.avi, Lesson10.mov</p></li>
+</ul></li>
+<li><p class="number">Open and play the Lesson10.avi sample movie in Windows Movies &amp; TV or the Lesson10.mov sample movie in QuickTime Player to see what you will create in this lesson. When you are done, close Windows Movies &amp; TV or QuickTime Player. You may delete the sample movies from your hard disk if you have limited storage space.</p></li>
+</ol>
+<p class="noindent">When you begin this lesson, restore the default application settings for After Effects. See “<a href="pref02.xhtml#pref02lev1sec6">Restoring default preferences</a>” on page <a href="pref02.xhtml#page_3">3</a>.</p>
+<ol start="3">
+<li><p class="number">Start After Effects, and then immediately hold down Ctrl+Alt+Shift (Windows) or Command+Option+Shift (macOS). When prompted, click OK to delete your preferences.</p></li>
+<li><p class="number">Click New Project in the Home window.</p></li>
+</ol>
+<p class="noindent">After Effects opens to display an empty, untitled project.</p>
+<ol start="5">
+<li><p class="number">Choose File &gt; Save As &gt; Save As.</p></li>
+<li><p class="number">In the Save As dialog box, navigate to the Lessons/Lesson10/Finished_Project folder. Name the project <strong>Lesson10_Finished.aep</strong>, and then click Save.</p></li>
+</ol>
+<h4 id="ch10lev2sec1"><span epub:type="pagebreak" id="page_243"/>Creating the composition</h4>
+<p class="noindent">You’ll create a new composition based on the two superkid movie files.</p>
+<ol>
+<li><p class="number">Choose File &gt; Import &gt; File.</p></li>
+<li><p class="number">Navigate to the Lessons/Lesson10/Assets folder, Shift-click to select the storm_clouds.jpg, superkid_01.mov, and superkid_02.mov files, and then click Import or Open.</p></li>
+<li><p class="number">In the Project panel, deselect the assets you imported. Select the superkid_01. mov file and Shift-click the superkid_02.mov file, and drag the files onto the Create A New Composition button (<img src="Images/new_composition.jpg" alt="Image" width="18" height="13"/>) at the bottom of the Project panel.</p></li>
+<li><p class="number">In the New Composition From Selection dialog box, do the following:</p>
+<ul class="ul1">
+<li><p class="bullet1">Make sure Single Composition is selected.</p></li>
+<li><p class="bullet1">In the Options area, choose superkid_01.mov from the Use Dimensions From menu.</p></li>
+<li><p class="bullet1">Select Sequence Layers.</p></li>
+<li><p class="bullet1">Select Overlap.</p></li>
+<li><p class="bullet1">For Duration, enter <strong>0:18</strong>.</p></li>
+<li><p class="bullet1">Choose Dissolve Front Layer from the Transition menu.</p></li>
+<li><p class="bullet1">Click OK.</p></li>
+</ul></li>
+</ol>
+<div class="note"><hr/>
+<p class="note-title"><span class="middle"><img src="Images/note.jpg" alt="Image" width="15" height="14"/></span> Note</p>
+<p class="note-para">You can add transitions after you’ve created a composition by selecting the layers, choosing Animation &gt; Keyframe Assistant &gt; Sequence Layers, and then selecting the options.</p>
+<hr/></div>
+<div class="image"><img src="Images/cc_01.jpg" alt="Image" width="736" height="419"/></div>
+<div class="sidebar">
+<p class="title"><span epub:type="pagebreak" id="page_244"/><span class="red">Previewing your project on a video monitor</span></p>
+<p class="sb-noindent">If possible, perform color correction on a video monitor instead of a computer monitor. The gamma values between a computer monitor and a broadcast monitor vary greatly. What may look good on a computer screen may be too bright and washed out on a broadcast monitor. Always be sure your video or computer monitor is properly calibrated before performing color correction. For instructions on calibrating a computer monitor, see After Effects Help.</p>
+<p class="sb-noindent">Mercury Transmit is a software interface that Adobe digital video applications use to send video frames to external video displays. Video device manufacturers AJA, Blackmagic Design, Bluefish444, and Matrox provide plug-ins that route the video frames from Mercury Transmit to their hardware. The same Mercury Transmit plug-ins work in Adobe Premiere Pro, Prelude, and After Effects. Mercury Transmit can also use monitors connected to your computer’s video card and FireWire-connected DV devices without an additional plug-in.</p>
+<ol>
+<li><p class="number">With a video monitor connected to your computer system, start After Effects.</p></li>
+<li><p class="number">Choose Edit &gt; Preferences &gt; Video Preview (Windows) or After Effects CC &gt; Preferences &gt; Video Preview (macOS). Then select Enable Mercury Transmit.</p></li>
+<li><p class="number">Choose a device from the list. Devices with names such as AJA Kona 3G or Blackmagic Playback represent video devices connected to your computer. Adobe Monitor devices are the computer monitors connected to your video card. Adobe DV requires a DV device connected to a FireWire port on your computer.</p></li>
+<li><p class="number">To change the options for your video device, click Setup next to its name. More options may be available in the device’s control panel or management application.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_sb01.jpg" alt="Image" width="599" height="224"/></div>
+<ol start="5">
+<li><p class="number">Click OK to close the Preferences dialog box.</p></li>
+</ol>
+</div>
+<p class="noindent"><span epub:type="pagebreak" id="page_245"/>When Sequence Layers is selected, After Effects places the layers in sequence rather than placing them both to start at 0:00. You specified an overlap of 18 frames and a transition so that the first clip dissolves into the second.</p>
+<p class="noindent">After Effects creates a new composition named for the superkid_01.mov file, and displays it in the Composition and Timeline panels.</p>
+<ol start="5">
+<li><p class="number">Select the superkid_01 composition in the Project panel, press Enter or Return, and rename the composition <strong>Taking Flight</strong>. Press Enter or Return again to accept the change.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_03.jpg" alt="Image" width="684" height="289"/></div>
+<ol start="6">
+<li><p class="number">Press the spacebar to preview the clips, including the transition, and then press the spacebar again to stop the preview.</p></li>
+<li><p class="number">Choose File &gt; Save to save your work so far.</p></li>
+</ol>
+<h3 id="ch10lev1sec2">Adjusting color balance with levels</h3>
+<p class="noindent">After Effects provides several tools for color correction. Some may do the job with a single click, but understanding how to adjust colors manually gives you the greatest freedom to achieve the look you want. You’ll use the Levels effect to adjust the shadows, remove the blue cast, and make the image pop a little more. You’ll work on the clips individually, starting with the second clip.</p>
+<ol>
+<li><p class="number">Go to 4:00 in the time ruler.</p></li>
+<li><p class="number">Click in an empty area of the Timeline panel to deselect the layers. Then, select the superkid_02.mov layer.</p></li>
+<li><p class="number"><span epub:type="pagebreak" id="page_246"/>Press Enter or Return, rename the layer <strong>Wide Shot</strong>, and then press Enter or Return to accept the new name.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_05.jpg" alt="Image" width="660" height="175"/></div>
+<ol start="4">
+<li><p class="number">With the Wide Shot layer selected, choose Effect &gt; Color Correction &gt; Levels (Individual Controls).</p></li>
+</ol>
+<p class="noindent">The Levels (Individual Controls) effect may be a little intimidating at first, but it can give you great control over your shot. It remaps the range of input color or alpha channel levels onto a new range of output levels, functioning much the same as the Levels adjustment in Adobe Photoshop.</p>
+<div class="image"><img src="Images/cc_06.jpg" alt="Image" width="377" height="371"/></div>
+<p class="noindent">The Channel menu specifies the channel to be modified, and the histogram shows the number of pixels with each luminance value in the image. When the selected channel is RGB, you can adjust the overall brightness and contrast of the image.</p>
+<p class="noindent">To remove a color cast, you must first know which areas of the image are supposed to be gray (or white or black). In this shot, the driveway is gray, the shirt is white, and the shoes and goggles are black.</p>
+<ol start="5">
+<li><p class="number"><span epub:type="pagebreak" id="page_247"/>Open the Info panel. Then, move the cursor over the white frame of the garage door. As you move the cursor, the RGB values change in the Info panel.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_07.jpg" alt="Image" width="549" height="176"/></div>
+<div class="note"><hr/>
+<p class="note-title"><span class="middle"><img src="Images/note.jpg" alt="Image" width="15" height="14"/></span> Note</p>
+<p class="note-para">You may need to resize the Info panel to see the values.</p>
+<hr/></div>
+<p class="noindent">In one area of the garage door frame, the RGB values are R=186, G=218, B=239. To determine what the values should be, divide 255 (the highest possible RGB value) by the highest value in the sample. That gives you 255 divided by 239 (the blue value), or 1.08. To equalize the colors so that blue is no longer prominent, multiply 1.08 by the original red and green values (186 and 218, respectively). The new values (rounded) are 200 for red and 233 for green.</p>
+<div class="note"><hr/>
+<p class="note-title"><span class="middle"><img src="Images/tip.jpg" alt="Image" width="15" height="17"/></span> Tip</p>
+<p class="note-para">For an even more accurate number, sample multiple areas of the image that are gray or white, average those values, and then use those numbers to determine the adjustments.</p>
+<hr/></div>
+<ol start="6">
+<li><p class="number">In the Effect Controls panel, expand the Red and Green properties.</p></li>
+<li><p class="number">For the Red Input White value, enter <strong>200</strong>; for the Green Input White value, enter <strong>233</strong>.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_08.jpg" alt="Image" width="709" height="397"/></div>
+<p class="noindent">The blue cast is gone, and the image appears warmer.</p>
+<p class="noindent"><span epub:type="pagebreak" id="page_248"/>For each channel, the Input settings increase the value, while the Output settings decrease the value. For example, lowering the Red Input White value adds red to the highlights in the shot, and increasing the Red Output White value adds red to the shadows or dark areas in the shot.</p>
+<p class="noindent">Performing the math lets you zero in on the appropriate settings quickly. If you prefer, you could experiment with the settings to find the best values for the footage you’re using.</p>
+<ol start="8">
+<li><p class="number">Hide the Levels (Individual Controls) properties in the Effect Controls panel.</p></li>
+</ol>
+<h3 id="ch10lev1sec3">Adjusting color with the Lumetri Color effect</h3>
+<p class="noindent">You used the Levels effect to adjust the color balance in the second clip. Now you’ll use the Lumetri Color effect to do the same for the first clip.</p>
+<div class="note"><hr/>
+<p class="note-title"><span class="middle"><img src="Images/note.jpg" alt="Image" width="15" height="14"/></span> Note</p>
+<p class="note-para">The Lumetri Color effect in After Effects is similar to the color panel in Premiere Pro. To learn more about the Lumetri Color effect, search for “Color workflows” in After Effects Help.</p>
+<hr/></div>
+<p class="noindent">The Lumetri Color effect provides professional-quality grading and color correction tools that you can use to adjust color, contrast, light, and curves. You can apply simple color corrections or use more advanced color correction tools. The Lumetri Color effect in After Effects works the same as the color panel in Premiere Pro.</p>
+<p class="noindent">The clip is in pretty good shape, but some fine-tuning will result in a better project.</p>
+<ol>
+<li><p class="number">Press the Home key or move the current-time indicator to the beginning of the time ruler.</p></li>
+<li><p class="number">Select the superkid_01.mov layer in the Timeline panel, press Enter or Return, rename the layer <strong>Close Shot</strong>, and press Enter or Return to accept the new name.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_09.jpg" alt="Image" width="659" height="175"/></div>
+<ol start="3">
+<li><p class="number">With the Close Shot layer selected, choose Effect &gt; Color Correction &gt; Lumetri Color.</p></li>
+</ol>
+<p class="noindent">The Lumetri Color effect options appear in the Effect Controls panel.</p>
+<ol start="4">
+<li><p class="number">In the Effect Controls panel, expand the Basic Correction category.</p></li>
+<li><p class="number">Click the eyedropper next to WB Selector in the White Balance section. Then click a white area on the boy’s shirt to adjust the white balance.</p></li>
+</ol>
+<div class="image"><span epub:type="pagebreak" id="page_249"/><img src="Images/cc_10.jpg" alt="Image" width="709" height="182"/></div>
+<p class="noindent">The White Balance setting determines what the Lumetri Color effect identifies as white, which affects the relationship of all other colors. When the white balance is appropriate for your image, colors are rendered accurately.</p>
+<ol start="6">
+<li><p class="number">Collapse the Basic Correction category, and expand Curves.</p></li>
+</ol>
+<p class="noindent">The curves feature in the Lumetri Color effect lets you adjust color and brightness in your video image. You can adjust the curves for the entire image to change the black and white levels, or brighten or darken midtones. You can also adjust the curve for a specific color channel to balance color or make stylized changes.</p>
+<p class="noindent">To adjust a curve, click an anchor point and drag. Changes in the image appear immediately in the Composition panel.</p>
+<ol start="7">
+<li><p class="number">Select the blue color channel, and then click an anchor point and drag the curve down slightly to remove the blue color cast in the image.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_11.jpg" alt="Image" width="709" height="461"/></div>
+<ol start="8">
+<li><p class="number">Hide the Lumetri Color options in the Effect Controls panel.</p></li>
+<li><p class="number">Choose File &gt; Save to save your work.</p></li>
+</ol>
+<h3 id="ch10lev1sec4"><span epub:type="pagebreak" id="page_250"/>Replacing the background</h3>
+<p class="noindent">These shots were taken on a clear day with few clouds. To add a little drama, you’ll key out the sky and replace it with storm clouds. You’ll start by using the rigid mask tracker to mask the sky, and then key out the sky color. Then you’ll replace it with another image.</p>
+<h4 id="ch10lev2sec2">Using the mask tracker</h4>
+<p class="noindent">The mask tracker transforms a mask so that it follows the motion of an object or objects in a movie. It’s similar to the face tracker you used in the Extra Credit project in <a href="ch09.xhtml#ch09">Lesson 9</a>. You can use it to mask a moving object so that you can apply a special effect to it, for example. In this case, you’ll use it to track the sky as it shifts in a handheld camera. There is a great deal of blue in this clip—in shadows, the cape, and other areas—so it would be difficult to key out the sky without first isolating it.</p>
+<ol>
+<li><p class="number">Go to 2:22—the last frame in the first clip before the transition begins.</p></li>
+<li><p class="number">Select the Close Shot layer in the Timeline panel. Then select the Pen tool (<img src="Images/pen.jpg" alt="Image" width="17" height="18"/>) from the Tools panel.</p></li>
+<li><p class="number">In the Composition panel, draw a mask that follows the roofline of the buildings. Complete the mask outside the image in the Composition panel, as shown below. It’s okay if the mask cuts off the boy’s head, because his head doesn’t contain blue and won’t be keyed out.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_12.jpg" alt="Image" width="594" height="172"/></div>
+<ol start="4">
+<li><p class="number">With the Close Shot layer selected in the Timeline panel, press the M key to display the Mask properties.</p></li>
+<li><p class="number">Choose None from the Mask Mode menu.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_13.jpg" alt="Image" width="663" height="174"/></div>
+<p class="noindent"><span epub:type="pagebreak" id="page_251"/>Mask modes (blending modes for masks) control how masks within a layer interact with one another. By default, all masks are set to Add, which combines the transparency values of any masks that overlap on the same layer. While Add is chosen, areas outside the mask disappear. Choosing None from the Mask Mode menu reveals the entire clip in the Composition panel, not just the masked area, so it’s easier to edit.</p>
+<ol start="6">
+<li><p class="number">Right-click or Control-click Mask 1, and choose Track Mask.</p></li>
+</ol>
+<p class="noindent">After Effects opens the Tracker panel. The mask tracker does not alter the shape of the mask to follow a shape; the mask remains the same shape but the tracker can change its position, rotation, or scale based on the motion in the clip. You’ll use it to track the edges of the buildings without having to manually adjust and track the mask. Because the scene was shot without a tripod, you’ll track the position, scale, and rotation of the mask.</p>
+<ol start="7">
+<li><p class="number">In the Tracker panel, choose Position, Scale &amp; Rotation from the Method menu. Click the Track Selected Masks Backward button (<img src="Images/backward_button.jpg" alt="Image" width="13" height="11"/>) to begin tracking backward from 2:22.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_14.jpg" alt="Image" width="591" height="170"/></div>
+<ol start="8">
+<li><p class="number">When the tracking is complete, manually preview the clip to see the mask. If it slips out of place, adjust the mask on individual frames. You can shift the entire mask or reposition individual points, but don’t delete any points, as that will change the mask for all the frames that follow.</p></li>
+</ol>
+<div class="note"><hr/>
+<p class="note-title"><span class="middle"><img src="Images/note.jpg" alt="Image" width="15" height="14"/></span> Note</p>
+<p class="note-para">If the mask requires adjustment on more than a few frames, delete it and draw the mask again.</p>
+<hr/></div>
+<div class="image"><img src="Images/cc_15.jpg" alt="Image" width="836" height="142"/></div>
+<h4 id="ch10lev2sec3"><span epub:type="pagebreak" id="page_252"/>Keying out the sky with Keylight (1.2)</h4>
+<p class="noindent">Now that you’ve masked the sky, you’ll key out the blue in the area that you masked. First, you’ll duplicate the layer, and then apply mask modes to isolate the mask.</p>
+<ol>
+<li><p class="number">Go to 2:02. Then, select the Close Shot layer, and choose Edit &gt; Duplicate.</p></li>
+</ol>
+<p class="noindent">After Effects adds an identical layer, named Close Shot 2, above the Close Shot layer.</p>
+<ol start="2">
+<li><p class="number">Select the Close Shot layer, and choose Subtract from its Mask Mode menu.</p></li>
+<li><p class="number">Select the Close Shot 2 layer, press M to display its Mask properties, and choose Add from its Mask Mode menu.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_22.jpg" alt="Image" width="662" height="177"/></div>
+<p class="noindent">When you apply the Subtract mask mode, the influence of the mask is subtracted from the masks above it in the stacking order. The Add mask mode adds the mask to the masks above it. In this case, you’re ensuring that only the sky will be selected in the Close Shot 2 layer. If you zoom in to the Composition window while no layers are selected, you can see a faint line where the two layers intersect.</p>
+<ol start="4">
+<li><p class="number">Select the Close Shot layer, and press the M key twice quickly to show all of the mask properties for the layer. Reduce the Mask Expansion value to <strong>–1.0</strong> pixel.</p></li>
+</ol>
+<p class="noindent">The Mask Expansion setting determines how far, in pixels, from the mask path the influence of the mask on the alpha channel extends. You’ve shrunk the mask on the Close Shot layer so that the two masks don’t overlap.</p>
+<ol start="5">
+<li><p class="number">Hide the properties for the Close Shot layer.</p></li>
+<li><p class="number">Select the Close Shot 2 layer, and choose Effect &gt; Keying &gt; Keylight (1.2).</p></li>
+</ol>
+<p class="noindent">The Keylight 1.2 effect options appear in the Effect Controls panel.</p>
+<ol start="7">
+<li><p class="number"><span epub:type="pagebreak" id="page_253"/>Select the eyedropper next to Screen Colour, and then sample an area of the sky near the boy’s head.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_24.jpg" alt="Image" width="682" height="223"/></div>
+<p class="noindent">Most of the sky is keyed out, but if your mask overlapped any of the shadowy areas of the buildings, they’re probably affected too. You’ll use Screen Balance to fix that.</p>
+<ol start="8">
+<li><p class="number">Change the Screen Balance to <strong>0</strong>.</p></li>
+</ol>
+<p class="noindent">The buildings lighten up.</p>
+<p class="noindent">Screen Balance determines how saturation is measured: With a balance of 1, saturation is measured against the smaller of the other two components in the color; with a balance of 0, it’s measured against the larger of the two; with a balance of 0.5, it’s measured from the average of the two. Generally speaking, blue screens work best with a balance around .95 and green screens with a balance around 0.5, but it varies depending on the colors in the image. For many clips, try setting the balance closer to 0, and then closer to 1, to see what works best.</p>
+<ol start="9">
+<li><p class="number">Click the Toggle Transparency Grid button (<img src="Images/toggle_transparency.jpg" alt="Image" width="20" height="14"/>) in the Composition panel to see the keyed-out area clearly.</p></li>
+<li><p class="number">Expand the Screen Matte category in the Effect Controls panel, and then change the Clip White value to <strong>67</strong>.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_26.jpg" alt="Image" width="682" height="335"/></div>
+<p class="noindent"><span epub:type="pagebreak" id="page_254"/>The screen matte is the matte that remains when you’ve keyed out other parts of the image. Sometimes parts of the matte are accidentally keyed out. The Clip White value turns the gray (transparent) pixels to white (opaque).</p>
+<p class="noindent">This process is very similar to adjusting Levels for a layer. Anything above the Clip White value is considered pure white. Likewise, the Clip Black value makes anything below the value completely black.</p>
+<ol start="11">
+<li><p class="number">Make sure Final Result is chosen in the View menu at the top of the Keylight (1.2) area in the Effect Controls panel.</p></li>
+<li><p class="number">Hide the properties for the Close Shot 2 layer.</p></li>
+</ol>
+<h4 id="ch10lev2sec4">Adding a new background</h4>
+<p class="noindent">With the original sky keyed out, you’re ready to add the clouds to the scene.</p>
+<ol>
+<li><p class="number">Click the Project tab to display the Project panel, and then drag the storm_clouds.jpg file to the Timeline panel, placing it below the Close Shot layer.</p></li>
+<li><p class="number">Drag the end of the storm_clouds layer to align with the end of the Close Shot layer.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_27.jpg" alt="Image" width="527" height="141"/></div>
+<p class="noindent">Now the clouds are there, but they’re not very dramatic. You’ll make them larger and adjust their position.</p>
+<ol start="3">
+<li><p class="number">Press the S key to display the Scale property for the layer, and change the amount to <strong>222%</strong>.</p></li>
+<li><p class="number">Press Shift+P to display the Position property for the layer, and change the value to <strong>580.5</strong>, <strong>255.7</strong>.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_29.jpg" alt="Image" width="685" height="177"/></div>
+<h3 id="ch10lev1sec5"><span epub:type="pagebreak" id="page_255"/>Color-correcting using Auto Levels</h3>
+<p class="noindent">Although the storm clouds are dramatic, the contrast of the image and the color cast don’t really match the foreground elements. You’ll use the Auto Levels effect to correct that.</p>
+<p class="noindent">The Auto Levels effect automatically sets highlights and shadows by defining the lightest and darkest pixels in each color channel as white and black, and then redistributing intermediate pixel values proportionately. Because Auto Levels adjusts each color channel individually, it may remove or introduce a color cast. In this case, with the default settings applied, Auto Levels removes the orange cast and balances the shot.</p>
+<ol>
+<li><p class="number">With the storm_clouds layer selected in the Timeline panel, choose Effect &gt; Color Correction &gt; Auto Levels.</p></li>
+<li><p class="number">To brighten the clouds just a bit, change the White Clip value to <strong>1.00%</strong>.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_30.jpg" alt="Image" width="682" height="169"/></div>
+<p class="noindent">The Black Clip and White Clip values determine how much of the shadows and highlights (respectively) are clipped to the new extreme shadow and highlight colors in the image. Setting the clipping values too high reduces detail in the shadows or highlights; 1% is as high as is typically recommended.</p>
+<ol start="3">
+<li><p class="number">Choose File &gt; Save to save your work.</p></li>
+</ol>
+<h3 id="ch10lev1sec6">Motion tracking the clouds</h3>
+<p class="noindent">The clouds are in place, and they’re looking good. But if you scrub through the clip, you’ll notice that the clouds are static while the foreground moves due to camera motion. The clouds should travel with the foreground. You’ll use motion tracking to solve this problem.</p>
+<p class="noindent">After Effects tracks motion by matching pixels from a selected area in a frame to pixels in each succeeding frame. Tracking points designate the areas to track.</p>
+<ol>
+<li><p class="number"><span epub:type="pagebreak" id="page_256"/>Press the Home key or move the current-time indicator to the beginning of the time ruler.</p></li>
+<li><p class="number">Select the Close Shot layer in the Timeline panel, right-click or Control-click the layer, and choose Track &amp; Stabilize &gt; Track Motion.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_31.jpg" alt="Image" width="659" height="405"/></div>
+<p class="noindent">After Effects displays the Close Shot layer in the Layer panel and makes the Tracker panel active.</p>
+<ol start="3">
+<li><p class="number">In the Tracker panel, select the Position, Rotation, and Scale options.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_32.jpg" alt="Image" width="522" height="292"/></div>
+<p class="noindent">After Effects displays two track points in the Layer panel. The outer box in each track point represents the search region (the area After Effects scans); the inner box is the feature region (what After Effects is searching for); the center “x” is the attach point.</p>
+<div class="note"><hr/>
+<p class="note-title"><span class="middle"><img src="Images/note.jpg" alt="Image" width="15" height="14"/></span> Note</p>
+<p class="note-para">You’ll learn more about tracking objects in <a href="ch14.xhtml#ch14">Lesson 14</a>, “<a href="ch14.xhtml#ch14">Advanced Editing Techniques</a>.” For help working with track points, see “<a href="ch14.xhtml#sb14_1">Moving and resizing the track points</a>” on page <a href="ch14.xhtml#page_350">350</a>.</p>
+<hr/></div>
+<ol start="4">
+<li><p class="number">Click an empty area in the inner box (the feature region) of the first track point, and drag the entire track point to the corner of the house on the left. You want to track an area with strong contrast.</p></li>
+<li><p class="number"><span epub:type="pagebreak" id="page_257"/>Click an empty area in the feature region of the second track point, and drag the entire track point to the peak of the roof across from the first track point.</p></li>
+<li><p class="number">In the Tracker panel, click Edit Target. Then, in the Motion Target dialog box, choose 3. storm_clouds.jpg from the Layer menu. Click OK.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_33.jpg" alt="Image" width="564" height="364"/></div>
+<p class="noindent">After Effects applies the tracking data to the target layer. In this case, it will track the motion of the Close Shot layer, and apply that tracking data to the storm_clouds.jpg layer so that they move in sync.</p>
+<ol start="7">
+<li><p class="number">Click the Analyze Forward button (<img src="Images/play1.jpg" alt="Image" width="12" height="11"/>) in the Tracker panel. You may need to scroll down to see all the options in the panel.</p></li>
+</ol>
+<p class="noindent">After Effects analyzes the positions of the tracking regions frame by frame to track the camera movement in the clip.</p>
+<ol start="8">
+<li><p class="number">When the analysis is complete, click Apply in the Tracker panel. Click OK to apply the data for both the x and y dimensions.</p></li>
+<li><p class="number">Switch back to the Composition panel, and scrub backward through the timeline. The clouds move with the foreground elements. Hide the Close Shot layer properties to keep the Timeline panel tidy.</p></li>
+</ol>
+<p class="noindent">Because you selected Scale in the Tracker panel, After Effects resized the layer as necessary to sync it with the Close Shot layer. The clouds are no longer in the same position. You’ll adjust the anchor point for the layer.</p>
+<ol start="10">
+<li><p class="number">Select the storm_clouds.jpg layer in the Timeline panel, and press the A key to display its Anchor Point property. Change the Anchor Point position to <strong>313</strong>, <strong>601</strong>.</p></li>
+<li><p class="number">Press A to hide the Anchor Point property, and choose File &gt; Save to save your work so far.</p></li>
+</ol>
+<h3 id="ch10lev1sec7"><span epub:type="pagebreak" id="page_258"/>Replacing the sky in the second clip</h3>
+<p class="noindent">You’ll use a similar process to replace the sky in the second clip, with a few differences. You’ll use the Color Range effect to key out the sky instead of the Keylight (1.2) effect.</p>
+<h4 id="ch10lev2sec5">Creating the masks</h4>
+<p class="noindent">As you did with the first clip, you’ll start by drawing a mask to isolate the sky so you won’t key out all the blue in the image. You’ll use the mask tracker to ensure the mask stays in the right position throughout the clip.</p>
+<ol>
+<li><p class="number">Go to 2:23 in the time ruler—the first frame in the second clip.</p></li>
+<li><p class="number">Click the Video switch (<img src="Images/eye.jpg" alt="Image" width="18" height="11"/>) in the Timeline panel for the Close Shot, Close Shot 2, and storm_clouds.jpg layers to hide them so that you can see the full Wide Shot clip clearly.</p></li>
+<li><p class="number">Select the Wide Shot layer in the Timeline panel.</p></li>
+<li><p class="number">Select the Pen tool (<img src="Images/pen.jpg" alt="Image" width="17" height="18"/>) in the Tools panel, and then follow the edges of the buildings to draw a mask around the bottom of the image, omitting the sky. Make sure the boy’s blue pants are entirely within the shape you draw, so they won’t be keyed out with the sky.</p></li>
+<li><p class="number">Select the Wide Shot layer again, and then press Ctrl+D (Windows) or Command+D (macOS) to duplicate the layer.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_35.jpg" alt="Image" width="648" height="190"/></div>
+<p class="noindent">A new Wide Shot 2 layer appears above the original Wide Shot layer in the Timeline panel.</p>
+<ol start="6">
+<li><p class="number">Select the original Wide Shot layer, and press the M key twice to reveal the mask properties for the layer. Change the Mask Expansion value to <strong>1</strong> pixel.</p></li>
+</ol>
+<p class="noindent">The influence of the mask expands by 1 pixel beyond its outline.</p>
+<ol start="7">
+<li><p class="number"><span epub:type="pagebreak" id="page_259"/>Select the Wide Shot 2 layer, press the M key twice to reveal the mask properties for the layer, and then select Inverted.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_36.jpg" alt="Image" width="653" height="215"/></div>
+<p class="noindent">The area that is masked in the Wide Shot 2 layer is inverted: What is masked in the Wide Shot layer is not in the Wide Shot 2 layer, and vice versa. To see this clearly, temporarily hide the Wide Shot layer and then show it again.</p>
+<ol start="8">
+<li><p class="number">Select Mask 1 in the Wide Shot 2 layer, right-click or Control-click Mask 1, and then choose Track Mask.</p></li>
+<li><p class="number">In the Tracker panel, choose Position from the Method menu, and then click the Track Selected Masks Forward button (<img src="Images/play1.jpg" alt="Image" width="12" height="11"/>).</p></li>
+</ol>
+<p class="noindent">The mask tracker tracks the mask as the camera moves.</p>
+<ol start="10">
+<li><p class="number">When the analysis is complete, go to 2:23 in the time ruler again. Under the Wide Shot layer, right-click or Control-click Mask 1, and choose Track Mask.</p></li>
+<li><p class="number">In the Tracker panel, choose Position from the Method menu, and then click the Track Selected Masks Forward button (<img src="Images/play1.jpg" alt="Image" width="12" height="11"/>).</p></li>
+<li><p class="number">Hide the properties for all layers.</p></li>
+</ol>
+<h4 id="ch10lev2sec6">Keying out an area with the Color Range effect</h4>
+<p class="noindent">The Color Range effect keys out a specified range of colors. This key effect is especially useful where the color to be keyed is unevenly lit. The sky in the Wide Shot clip ranges in color from a deep blue to a lighter shade near the horizon—a perfect candidate for the Color Range effect.</p>
+<ol>
+<li><p class="number">Go to 2:23 in the time ruler.</p></li>
+<li><p class="number">Select the Wide Shot 2 layer in the Timeline panel, and choose Effect &gt; Keying &gt; Color Range.</p></li>
+<li><p class="number"><span epub:type="pagebreak" id="page_260"/>Select the Key Color eyedropper, next to the Preview window in the Effect Controls panel. Then, in the Composition panel, click a midtone blue color in the sky to sample it.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_38.jpg" alt="Image" width="682" height="225"/></div>
+<p class="noindent">The keyed-out area appears black in the Preview window in the Effect Controls panel.</p>
+<ol start="4">
+<li><p class="number">Select the Add To Key Color eyedropper in the Effect Controls panel, and then click another area of the sky in the Composition panel.</p></li>
+<li><p class="number">Repeat step 4 until the entire sky has been keyed out.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_39.jpg" alt="Image" width="682" height="226"/></div>
+<div class="note"><hr/>
+<p class="note-title"><span class="middle"><img src="Images/tip.jpg" alt="Image" width="15" height="17"/></span> Tip</p>
+<p class="note-para">Select the blue areas of the sky, but not the clouds. You don’t want to key out parts of the boy’s shirt.</p>
+<hr/></div>
+<h4 id="ch10lev2sec7">Adding a new background</h4>
+<p class="noindent">With the original sky keyed out, you’re ready to add the clouds to the scene.</p>
+<div class="note"><hr/>
+<p class="note-title"><span class="middle"><img src="Images/tip.jpg" alt="Image" width="15" height="17"/></span> Tip</p>
+<p class="note-para">If you’re typing the values, press Tab to jump between the fields.</p>
+<hr/></div>
+<ol>
+<li><p class="number">Click the Project tab to display the Project panel. Then drag the storm_clouds.jpg item from the Project panel to the Timeline panel, placing it below the Wide Shot layer.</p></li>
+<li><p class="number">With the storm_clouds layer selected in the Timeline panel, press the S key to display its Scale property, and then increase the Scale values to <strong>150</strong>, <strong>150%</strong>.</p></li>
+<li><p class="number">With the storm_clouds layer still selected in the Timeline panel, press P to display its Position property. Then change the position values to <strong>356</strong>, <strong>205</strong> or the position you prefer.</p></li>
+<li><p class="number"><span epub:type="pagebreak" id="page_261"/>With the storm_clouds layer selected, choose Effect &gt; Color Correction &gt; Auto Levels. Change the White Clip value to <strong>1.00%</strong>.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_41.jpg" alt="Image" width="682" height="165"/></div>
+<h4 id="ch10lev2sec8">Motion tracking the shot</h4>
+<p class="noindent">Again, because the clip was shot without a tripod, the camera shifts. The clouds should shift with it. You’ll track the motion to sync the clouds with the foreground elements, just as you did for the other clip.</p>
+<ol>
+<li><p class="number">Make sure the current-time indicator is at 2:23. Then select the Wide Shot layer, right-click or Control-click it, and choose Track &amp; Stabilize &gt; Track Motion.</p></li>
+<li><p class="number">In the Tracker panel, select the Position, Rotation, and Scale options.</p></li>
+<li><p class="number">Click in the feature region (the inner box) of one of the track points, and drag it to the peak of the roof of the house on the far right. Then, drag the feature region of the other track point to the peak of the house straight across from it, as in the illustration.</p></li>
+<li><p class="number">In the Tracker panel, click Edit Target. In the Motion Target dialog box, choose 6. storm_clouds.jpg from the Layer menu, and click OK. Make sure you select the second storm_clouds.jpg file, and not the first one (layer 3); you want the one that is associated with the Wide Shot layer.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_42.jpg" alt="Image" width="565" height="364"/></div>
+<ol start="5">
+<li><p class="number"><span epub:type="pagebreak" id="page_262"/>Click the Analyze Forward button in the Tracker panel.</p></li>
+<li><p class="number">When the analysis is complete, click Apply in the Tracker panel. Click OK to apply the data to both the x and y dimensions.</p></li>
+<li><p class="number">Click the Composition: Taking Flight tab in the Composition panel to make it active. Then scrub through the clip to watch the clouds in sync with the other elements.</p></li>
+</ol>
+<p class="noindent">The clouds follow the movement of the camera, but because the layer was scaled, they may not be in the right position.</p>
+<ol start="8">
+<li><p class="number">Hide the properties for all layers.</p></li>
+<li><p class="number">Make sure no layers are selected. Then, select the storm_clouds.jpg layer at the bottom of the layer stack, and press the A key to reveal the Anchor Point property. Adjust it so that it looks right. We used <strong>941</strong>, <strong>662</strong>.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_48.jpg" alt="Image" width="654" height="219"/></div>
+<ol start="10">
+<li><p class="number">Make the Close Shot, Close Shot 2, and first storm_clouds.jpg layers visible again.</p></li>
+<li><p class="number">Choose File &gt; Save to save your work so far.</p></li>
+</ol>
+<h3 id="ch10lev1sec8">Color grading</h3>
+<p class="noindent">So far, the color changes you’ve made have been to correct inaccurate white balances or to match color between clips. You can also change color and tone to create a mood or otherwise enhance a movie. You’ll make some final adjustments to give the entire movie a steely blue color, make the image soft and dreamy, and add a vignette.</p>
+<h4 id="ch10lev2sec9">Using CC Toner to map colors</h4>
+<p class="noindent">CC Toner is a color-mapping effect based on the luminance of the source layer. You can map two (duotone), three (tritone), or five (pentone) colors. You’ll use it to map a cold blue color to bright areas of the clip, a steely blue to the midtones, and a darker blue to darker areas of the clip.</p>
+<ol>
+<li><p class="number"><span epub:type="pagebreak" id="page_263"/>Choose Layer &gt; New &gt; Adjustment Layer.</p></li>
+</ol>
+<p class="noindent">You can use an adjustment layer to apply an effect to all the layers beneath it at once. Because it’s on a separate layer, you can also hide or edit the layer and automatically affect its influence on all the other layers.</p>
+<ol start="2">
+<li><p class="number">Move the Adjustment Layer 1 layer to the top of the Timeline panel, if it’s not already there.</p></li>
+<li><p class="number">Select the Adjustment Layer 1 layer, press Enter or Return, rename the layer <strong>Steel Blue</strong>, and press Enter or Return again.</p></li>
+<li><p class="number">Select the Steel Blue layer, and choose Effect &gt; Color Correction &gt; CC Toner.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_49.jpg" alt="Image" width="709" height="201"/></div>
+<ol start="5">
+<li><p class="number">In the Effect Controls panel, choose Pentone from the Tones menu. Then do the following:</p>
+<ul class="ul1">
+<li><p class="bullet1">Click the Brights color swatch, and choose a cold blue color. (We used R=120, G=160, B=190.)</p></li>
+<li><p class="bullet1">Click the Midtones color swatch, and choose a darker, steely blue . (We used R=70, G=90, B=120.)</p></li>
+<li><p class="bullet1">Click the Darktones color swatch, and choose a much darker blue. (We used R=10, G=30, B=60.)</p></li>
+<li><p class="bullet1">Change the Blend With Original value to <strong>75%</strong>.</p></li>
+</ul></li>
+</ol>
+<div class="image"><img src="Images/cc_43.jpg" alt="Image" width="682" height="203"/></div>
+<h4 id="ch10lev2sec10"><span epub:type="pagebreak" id="page_264"/>Adding a blur</h4>
+<p class="noindent">You’ll add a blur to the entire project. First you’ll precompose the layers, and then you’ll create a partially visible blurred layer.</p>
+<ol>
+<li><p class="number">Select all of the layers in the Timeline panel, and choose Layer &gt; Pre-Compose.</p></li>
+</ol>
+<p class="noindent">Precomposing layers moves them to a new composition, making it easier to affect all the layers in a composition at once.</p>
+<ol start="2">
+<li><p class="number">In the Pre-Compose dialog box, name the composition <strong>Final Effect</strong>, and select Move All Attributes Into The New Composition. Then click OK.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_44.jpg" alt="Image" width="681" height="269"/></div>
+<p class="noindent">After Effects replaces all the layers in the Taking Flight composition with a single layer named Final Effect.</p>
+<ol start="3">
+<li><p class="number">Select the Final Effect layer, and choose Edit &gt; Duplicate to make a copy of it.</p></li>
+<li><p class="number">With the top layer selected, choose Effect &gt; Blur &amp; Sharpen &gt; Gaussian Blur.</p></li>
+<li><p class="number">In the Effect Controls panel, change the Blurriness to <strong>40</strong>.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_45a.jpg" alt="Image" width="683" height="159"/></div>
+<p class="noindent">The effect is too strong. You’ll reduce the opacity of the layer that contains the effect.</p>
+<ol start="6">
+<li><p class="number"><span epub:type="pagebreak" id="page_265"/>With the top layer selected, press the T key to reveal the Opacity property for the layer. Change its value to <strong>30%</strong>.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_45b.jpg" alt="Image" width="648" height="159"/></div>
+<h4 id="ch10lev2sec11">Adding a vignette</h4>
+<p class="noindent">You’ll use a new solid layer to create a vignette for the movie.</p>
+<ol>
+<li><p class="number">Choose Layer &gt; New &gt; Solid.</p></li>
+<li><p class="number">In the Solid Settings dialog box, do the following:</p>
+<ul class="ul1">
+<li><p class="bullet1">Name the layer <strong>Vignette</strong>.</p></li>
+<li><p class="bullet1">Click the Make Comp Size button.</p></li>
+<li><p class="bullet1">Change the color to black (R=<strong>0</strong>, G=<strong>0</strong>, B=<strong>0</strong>).</p></li>
+<li><p class="bullet1">Click OK.</p></li>
+</ul></li>
+</ol>
+<div class="image"><img src="Images/cc_46.jpg" alt="Image" width="382" height="355"/></div>
+<ol start="3">
+<li><p class="number">Select the Ellipse tool (<img src="Images/ellipse.jpg" alt="Image" width="19" height="15"/>), hidden beneath the Rectangle tool (<img src="Images/rectangle.jpg" alt="Image" width="19" height="15"/>) in the Tools panel, and then double-click the Ellipse tool to add an elliptical mask that is automatically sized to fit the layer.</p></li>
+<li><p class="number">In the Timeline panel, select the Vignette layer, and press the M key twice to reveal the mask properties. Change the Mask Mode to Subtract, and change the Mask Feather value to <strong>300</strong> pixels.</p></li>
+<li><p class="number"><span epub:type="pagebreak" id="page_266"/>Press the T key to reveal the Opacity property, and change its value to <strong>50%</strong>.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_47.jpg" alt="Image" width="648" height="160"/></div>
+<ol start="6">
+<li><p class="number">Hide the properties for all layers.</p></li>
+<li><p class="number">Preview your movie!</p></li>
+<li><p class="number">Save the file.</p></li>
+</ol>
+<div class="sidebar">
+<p class="title"><span epub:type="pagebreak" id="page_267"/><span class="red">Extra credit</span></p>
+<p class="sb-noindent"><strong>Cloning an object in a scene</strong></p>
+<p class="sb-noindent">You can copy an object, and then use motion tracking to ensure it remains in sync with the rest of the scene. You’ll use the Clone Stamp tool to place a second light on the other side of the door in the background of the Close Shot clip. Cloning in After Effects is similar to cloning in Photoshop, but in After Effects, you can clone across the entire timeline, rather than in a single image.</p>
+<ol>
+<li><p class="number">Press the Home key or move the current-time indicator to the beginning of the time ruler.</p></li>
+<li><p class="number">Double-click the lower Final Effect layer in the Timeline panel to open the Final Effect composition.</p></li>
+</ol>
+<p class="sb-noindent">You want to make the change to the copy of the composition that is not blurred.</p>
+<ol start="3">
+<li><p class="number">Double-click the Close Shot layer in the Timeline panel to open it in the Layer panel.</p></li>
+</ol>
+<p class="sb-noindent">You can paint only on individual layers—not on the composition as a whole.</p>
+<ol start="4">
+<li><p class="number">Select the Clone Stamp tool in the Tools panel.</p></li>
+</ol>
+<p class="sb-noindent">The Clone Stamp tool samples the pixels on a source layer and applies the sampled pixels to a target layer; the target layer can be the same layer or a different layer in the same composition.</p>
+<p class="sb-noindent">When you select the Clone Stamp tool, After Effects adds the Brushes and Paint panels to the stack.</p>
+<ol start="5">
+<li><p class="number">Open the Brushes panel and enlarge it if necessary. Then change the Diameter to <strong>10</strong> pixels and the Hardness value to <strong>60%</strong>.</p></li>
+<li><p class="number">Enlarge the Paint panel. Make sure the Mode is set to Normal and the Duration to Constant. The source should be set to Current Layer. Select Aligned and Lock Source Time, and make sure the Source Time is set to 0 frames.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_sb02ac.jpg" alt="Image" width="498" height="383"/></div>
+<p class="sb-noindent">The Constant setting applies the Clone Stamp effect from the current time forward. Because you’re starting at the beginning of the timeline, the changes you make will affect every frame in the layer.</p>
+<p class="sb-noindent"><span epub:type="pagebreak" id="page_268"/>When Aligned is selected in the Paint panel, the position of the sample point—the clone position—changes for subsequent strokes to match the movement of the Clone Stamp tool in the target Layer panel so you can use multiple strokes to paint the entire cloned object. The Lock Source Time option lets you clone a single source frame.</p>
+<ol start="7">
+<li><p class="number">In the Layer panel, position the cursor at the top of the lamp. Alt-click (Windows) or Option-click (macOS) to designate a source point for cloning.</p></li>
+<li><p class="number">Click next to the left side of the door, and then click and drag to clone the light. Be careful not to clone part of the door in the process. If you make a mistake, undo and start over with a new source point.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_50.jpg" alt="Image" width="438" height="142"/></div>
+<div class="note"><hr/>
+<p class="note-title"><span class="middle"><img src="Images/tip.jpg" alt="Image" width="15" height="17"/></span> Tip</p>
+<p class="note-para">If you make a mistake, just press Ctrl+Z (Windows) or Command+Z (macOS) to undo the stroke, and then try again.</p>
+<hr/></div>
+<ol start="9">
+<li><p class="number">When the second light is in place, scrub through the clip. The cloned light remains stationary while the rest of the scene moves; it isn’t in sync with the side of the building. You’ll use tracking data to fix the problem.</p></li>
+<li><p class="number">In the Timeline panel, expand the properties for the Close Shot layer, and then expand the Motion Trackers, Tracker 1, and Track Point 1 properties. Then, still in the Close Shot layer, expand the Effects, Paint, Clone 1, and Transform Clone 1 properties.</p></li>
+<li><p class="number">Drag the pick whip for the Transform Clone 1 Position property to the Track Point 1: Attach Point property, and release it. (You may need to enlarge the Timeline panel to see both properties at once.)</p></li>
+</ol>
+<p class="sb-noindent">The expression you created ties the position of the cloned light to the tracking data you created for the clip earlier in the lesson. The light will travel with the image. But it may be in the wrong place. You can correct its relationship to the door by adjusting its anchor point.</p>
+<ol start="12">
+<li><p class="number">Adjust the Transform: Clone 1: Anchor Point property until the light is positioned next to the door.</p></li>
+</ol>
+<p class="sb-noindent">You might need to zoom out to see where the light is while adjusting the anchor point values. Your values will probably be different from ours.</p>
+<ol start="13">
+<li><p class="number">Scrub through the clip to verify that the light is positioned properly. When you’re satisfied that it is, close the Close Shot tab in the Layer panel and the Final Effect composition tab in the Timeline panel. Preview the entire composition to see your work.</p></li>
+<li><p class="number">Choose File &gt; Save to save your work.</p></li>
+</ol>
+<div class="image"><img src="Images/cc_sb02d.jpg" alt="Image" width="380" height="353"/></div>
+</div>
+<h3 id="ch10lev1sec9"><span epub:type="pagebreak" id="page_269"/><span class="red">Review questions</span></h3>
+<p class="question"><a id="ch10que1" href="ch10.xhtml#ch10que1a"><span class="red1"><strong>1</strong></span></a> What’s the difference between color correction and color grading?</p>
+<p class="question"><a id="ch10que2" href="ch10.xhtml#ch10que2a"><span class="red1"><strong>2</strong></span></a> How can you key out a background in After Effects?</p>
+<p class="question"><a id="ch10que3" href="ch10.xhtml#ch10que3a"><span class="red1"><strong>3</strong></span></a> When would you use the mask tracker?</p>
+<h3 id="ch10lev1sec10"><span class="red1">Review answers</span></h3>
+<p class="answer"><a id="ch10que1a" href="ch10.xhtml#ch10que1"><span class="red1"><strong>1</strong></span></a> Color correction is performed to correct errors in white balance and exposure or to ensure color consistency from one shot to another. Color grading is more subjective; its goals are to optimize the source material, to focus attention on a key element in the shot, or to create a color palette to match the visual look the director prefers.</p>
+<p class="answer"><a id="ch10que2a" href="ch10.xhtml#ch10que2"><span class="red1"><strong>2</strong></span></a> There are multiple options in After Effects for keying out a background. In this lesson, you used Keylight (1.2) and the Color Range effect to key out the background so that you could replace it with another.</p>
+<p class="answer"><a id="ch10que3a" href="ch10.xhtml#ch10que3"><span class="red1"><strong>3</strong></span></a> Use the mask tracker when you need to track a mask that does not change shape, but that does change position, scale, or rotation through a clip. For example, you can use it to track a person in an action shot, a wheel, or an area of the sky.</p>
+</div></body>
+</html>

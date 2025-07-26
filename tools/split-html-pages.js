@@ -2,7 +2,7 @@
 import fs from 'fs/promises'
 import puppeteer from 'puppeteer'
 
-const INPUT_HTML = './auxiliary/large_file.html'     // your source file
+const INPUT_HTML = './auxiliary/ch10.xhtml'     // your source file
 const OUTPUT_DIR = './working_dir/output-pages' // output folder
 const PAGE_HEIGHT = 600 // A4 at 96 DPI
 

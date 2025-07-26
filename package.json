@@ -4,7 +4,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"vite-node src/main.ts -f auxiliary/ch10.xhtml -t id -o working_dir/outputs/ch10.html"
   },
   "keywords": [],
   "author": "",

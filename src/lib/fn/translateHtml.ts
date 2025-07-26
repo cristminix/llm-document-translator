@@ -33,7 +33,7 @@ export const translateHtml = async (
       )
 
       console.log(`Translated chunk: "${translatedText}"`)
-      await writeChunkResult(chunkFilePath, translatedText)
+      await writeChunkResult(htmlInputFilePath, chunkFilePath, translatedText)
       //@ts-ignore
 
       translatedChunks.push(cleanInvalidMarkdown(await fixHtml(chunkFilePath)))

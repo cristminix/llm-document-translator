@@ -4,12 +4,15 @@ import dotenv from "dotenv"
 
 dotenv.config()
 const CHUNK_SIZE = parseInt(process.env.CHUNK_SIZE ?? "1000", 10)
-const CHUNK_RESULTS_DIR = process.env.CHUNK_RESULTS_DIR || "./chunk_results"
+const WORKING_DIR = process.env.WORKING_DIR ?? "./working_dir"
 
+const CHUNK_RESULTS_DIR = `${WORKING_DIR}/chunk_results` // output folder
 // Ensure the chunk results directory exists
-const ensureChunkResultsDir = async () => {
-  if (!fs.existsSync(CHUNK_RESULTS_DIR)) {
-    await fs.promises.mkdir(CHUNK_RESULTS_DIR, { recursive: true })
+const ensureChunkResultsDir = async (filePath: string) => {
+  const OUTPUT_DIR_BY_FILE = `${CHUNK_RESULTS_DIR}/${path.basename(filePath)}`
+
+  if (!fs.existsSync(OUTPUT_DIR_BY_FILE)) {
+    await fs.promises.mkdir(OUTPUT_DIR_BY_FILE, { recursive: true })
   }
 }
 
@@ -50,8 +53,10 @@ export const writeOutputFile = async (outputPath: string, content: string) => {
 
 export const getChunkFilePath = (filePath: string, chunkIndex: number) => {
   const fileName = path.basename(filePath)
+  const OUTPUT_DIR_BY_FILE = `${CHUNK_RESULTS_DIR}/${fileName}`
+
   return path.join(
-    CHUNK_RESULTS_DIR,
+    OUTPUT_DIR_BY_FILE,
     `${fileName}.chunk${chunkIndex}.${filePath.split(".").pop() ?? "txt"}`
   )
 }
@@ -69,19 +74,21 @@ export const readChunkResult = async (chunkFilePath: string) => {
 }
 
 export const writeChunkResult = async (
+  filePath: string,
   chunkFilePath: string,
   result: string
 ) => {
-  await ensureChunkResultsDir()
+  await ensureChunkResultsDir(filePath)
   await fs.promises.writeFile(chunkFilePath, result, "utf8")
 }
 
 export const deleteChunkResults = async (filePath: string) => {
   const fileName = path.basename(filePath)
-  const chunkFiles = await fs.promises.readdir(CHUNK_RESULTS_DIR)
+  const OUTPUT_DIR_BY_FILE = `${CHUNK_RESULTS_DIR}/${path.basename(filePath)}`
+  const chunkFiles = await fs.promises.readdir(OUTPUT_DIR_BY_FILE)
   for (const file of chunkFiles) {
     if (file.startsWith(fileName)) {
-      await fs.promises.unlink(path.join(CHUNK_RESULTS_DIR, file))
+      await fs.promises.unlink(path.join(OUTPUT_DIR_BY_FILE, file))
     }
   }
 }
