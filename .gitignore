@@ -1,12 +1,2 @@
 node_modules/
 .env
-chunk_results/
-html-split-outputs/
-output-pages/
-output-pages/*
-inputs/
-outputs/
-output-pages/
-pdf-pages/
-*.log
-*.tmp
