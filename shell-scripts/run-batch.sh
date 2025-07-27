@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HTML_INPUT_DIR="/media/cristminix/Data/projects/safaribooks-master/Books/Software Testing with Generative AI (9781633437364)/OEBPS"
+HTML_INPUT_DIR="/media/cristminix/Data/projects/safaribooks-master/Books/Project Management with AI For Dummies (9781394320844)/OEBPS"
 HTML_OUTPUT_DIR="${HTML_INPUT_DIR}/translated"
 
 mkdir -p "${HTML_OUTPUT_DIR}"

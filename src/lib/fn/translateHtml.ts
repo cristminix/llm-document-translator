@@ -8,9 +8,10 @@ import { splitHtml } from "./splitHtml"
 import { splitHtml2Markdown } from "./splitHtml2Markdown"
 import { marked } from "marked"
 function getMarkdownContent(text: string): string {
-  const regex = /```markdown\n([\s\S]*?)\n```/g
-  const match = regex.exec(text)
-  return match ? match[1] : ""
+  const lines = text.split("\n")
+  if (lines[0].startsWith("```markdown")) lines.shift() // Remove the first line if it starts with "```markdown"
+  if (lines[lines.length - 1].endsWith("```")) lines.pop() // Remove the last line if it ends with "```"
+  return lines.join("\n").trim()
 }
 export const translateHtml = async (
   htmlInputFilePath: string,
@@ -61,7 +62,7 @@ export const translateHtml = async (
       //@ts-ignore
       if (strategy === "splitHtml") {
         translatedChunks.push(
-          cleanInvalidMarkdown(await fixHtml(chunkFilePath))
+          cleanInvalidMarkdown(await fixHtml(chunkFilePath, "utf-8"))
         )
       } else {
         translatedChunks.push(await fs.readFile(chunkFilePath, "utf-8"))
@@ -71,13 +72,17 @@ export const translateHtml = async (
   }
   console.log(`Translated ${translatedChunks.length} chunks.`)
   console.log({ translatedChunks })
-  const body = await marked(
-    translatedChunks
-      .map((o) => {
-        return getMarkdownContent(o)
-      })
-      .join("\n")
-  )
+  const body =
+    strategy === "splitHtml"
+      ? translatedChunks.join("\n")
+      : await marked(
+          translatedChunks
+            .map((o) => {
+              return getMarkdownContent(o)
+            })
+            .join("\n")
+        )
+
   console.log(`Generated body: ${body}`)
   const html = `<!DOCTYPE html>
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd" xmlns:epub="http://www.idpf.org/2007/ops">
